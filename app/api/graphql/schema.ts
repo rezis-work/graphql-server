@@ -6,8 +6,9 @@ type Tweet {
 type Profile {
   id: ID!
   username: String!
+  person: Person!
 }
-union SearchResult = Tweet | Profile
+union SearchResult = Profile
 
 interface Character {
   name: String!
@@ -18,6 +19,7 @@ type Person implements Character {
   name: String!
   outfit: String!
   strengthStats: Int!
+  profile: Profile!
 
   backgroundStory: String!
 }
