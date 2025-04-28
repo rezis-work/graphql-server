@@ -3,6 +3,17 @@ type Tweet {
   id: ID!
   content: String!
 }
+
+enum STATUSES {
+  IN_PROGRESS
+  TODO
+  DONE
+}
+
+type Todo {
+  status: STATUSES!
+}
+
 type Profile {
   id: ID!
   username: String!
@@ -32,11 +43,20 @@ type Alien implements Character {
   homePlanet: String!
 }
 
+input SearchInput {
+  id: ID
+  name: String
+}
+
 type Query {
   me: Person!
   characters: [Character]!
-  search: [SearchResult!]!
-} 
+  search(input: SearchInput!): [SearchResult!]!
+}
+
+type Mutation {
+  makeTweet(content: String!): Tweet!
+}
 `;
 
 export default schema;
