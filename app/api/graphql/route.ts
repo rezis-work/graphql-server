@@ -1,12 +1,12 @@
+import { NextRequest } from "next/server";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
 import { ApolloServer } from "@apollo/server";
 import {
   ApolloServerPluginLandingPageLocalDefault,
   ApolloServerPluginLandingPageProductionDefault,
 } from "@apollo/server/plugin/landingPage/default";
-import resolvers from "./resolvers";
-import { NextRequest } from "next/server";
-import typeDefs from "./schema";
+import { schema } from "./schema";
+import { resolvers } from "./resolvers";
 
 let plugins = [];
 if (process.env.NODE_ENV === "production") {
@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const server = new ApolloServer({
-  typeDefs,
+  typeDefs: schema,
   resolvers,
   plugins,
 });
